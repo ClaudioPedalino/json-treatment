@@ -49,8 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="DynamicJsonConverter.cs" />
     <Compile Include="Models\ScenarioConfiguration.cs" />
+    <Compile Include="Models\ScenarioExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
