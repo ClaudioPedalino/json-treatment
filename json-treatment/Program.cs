@@ -37,17 +37,18 @@ namespace json_treatment
                 GetScenarioInfoFrom(mockdata11),
                 };
 
-            var currentCustomer = "654321";
+            var currentCustomer = "";
             var currentBrand = "BetOnline"; /// BetOnline | Sportsbetting | Lowvig | TigerGaming
             var currentWagerType = "Straight Blablabla"; /// Straigth | Parlay | Teaser | IfBet | ActionReverse
             var currentSport = "Soccer Blablabla";
             var currentLeague = "";
 
             List<bool> matchScenario = new List<bool>();
-            var index = 1;
 
             foreach (var scenario in scenarios.OrderBy(x => x.Items))
             {
+                matchScenario = new List<bool>();
+
                 if (scenario.Customers.HasData())
                 {
                     bool matchCustomer = scenario.Customers.Match(currentCustomer);
@@ -84,13 +85,34 @@ namespace json_treatment
                 if (matchScenario.All(x => x))
                 {
                     //return true;
-                    Console.WriteLine($"Scenario {index} - Coincide con escenario configurado. A la Api nueva");
+                    Console.WriteLine($"Coincide con escenario configurado. A la Api nueva");
+                    Console.WriteLine();
+                    Console.WriteLine($"Datos actuales: ");
+                    Console.WriteLine($"Brand: {currentBrand}");
+                    Console.WriteLine($"Wager: {currentWagerType}");
+                    Console.WriteLine($"Customer: {currentCustomer}");
+                    Console.WriteLine($"Sport: {currentSport}");
+                    Console.WriteLine($"League: {currentLeague}");
+                    Console.WriteLine();
+                    Console.WriteLine($"Scenario:");
+                    Console.WriteLine($"Brands: {string.Join(" - ", scenario.Brands.Select(x => x.Id))}");
+                    Console.WriteLine($"Wager: {string.Join(" - ", scenario.WagerTypes.Select(x => x.Id))}");
+                    Console.WriteLine($"Customer: {string.Join(" - ", scenario.Customers.Select(x => x.Id))}");
+                    Console.WriteLine($"Sport: {string.Join(" - ", scenario.Sports.Select(x => x.Id))}");
+                    Console.WriteLine($"Leagues: {string.Join(" - ", scenario.Leagues.Select(x => x.Id))}");
                     break;
                 }
-                else
-                {
-                    Console.WriteLine($"Scenario {index} - No coincide con ningún configurado. a la Vieja");
-                }
+            }
+            if (matchScenario.Any(x => !x))
+            {
+                Console.WriteLine($"No coincide con ningún configurado. a la Vieja");
+                Console.WriteLine();
+                Console.WriteLine($"Datos actuales: ");
+                Console.WriteLine($"Brand: {currentBrand}");
+                Console.WriteLine($"Wager: {currentWagerType}");
+                Console.WriteLine($"Customer: {currentCustomer}");
+                Console.WriteLine($"Sport: {currentSport}");
+                Console.WriteLine($"League: {currentLeague}");
             }
 
             Console.ReadLine();

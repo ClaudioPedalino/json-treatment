@@ -10,11 +10,11 @@ namespace json_treatment.Models
                                      List<Sport> sports,
                                      List<League> leagues)
         {
-            Customers = customers;
-            Brands = brands;
-            WagerTypes = wagerTypes;
-            Sports = sports;
-            Leagues = leagues;
+            Customers = customers ?? new List<Customer>();
+            Brands = brands ?? new List<Brand>();
+            WagerTypes = wagerTypes ?? new List<WagerType>();
+            Sports = sports ?? new List<Sport>();
+            Leagues = leagues ?? new List<League>();
 
             if (Customers.HasData()) Items++;
             if (Brands.HasData()) Items++;

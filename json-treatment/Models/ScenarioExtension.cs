@@ -7,7 +7,7 @@ namespace json_treatment.Models
     public static class ScenarioExtension
     {
         public static bool HasData<T>(this List<T> data)
-            => data != null && data.Any();
+            => data.Any();
 
         public static bool Match<T>(this List<T> data, string input)
             where T : IPropertyId
@@ -39,5 +39,6 @@ namespace json_treatment.Models
 
         //    return matchCustomer;
         //}
+
     }
 }
